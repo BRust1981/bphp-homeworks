@@ -12,7 +12,7 @@ $variable = null;
     <title>bPHP - 1.1.1</title>
 </head>
 <body>
-    <p><?
+    <p><?php
     if(is_bool($variable)){
       if($variable){
         echo 'true is bool'; 

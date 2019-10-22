@@ -1,25 +1,33 @@
 <?php
   date_default_timezone_set ('Europe/Moscow');
   $weekDays = ["понедельник","вторник","среда","четверг","пятница","суббота","воскресенье"];
-  $weekWork = [[9.10,18.00],[9.00,18.00],[9.00,18.00],[10.00,18.00],[10.00,18.00],[10.00,18.00],[-1,-1]];
+  $weekWork = [[9.00,18.00],[9.00,18.00],[9.00,18.00],[10.00,18.00],[10.00,18.00],[10.00,18.00],[-1,-1]];
   $weekDay = $weekDays[date("N")-1];
-  $today = "Сегодня $weekDay";
+  $todayIs = "Сегодня $weekDay";
 
   $hour = date("H");
-  if($hour >= $weekWork[date("N")-1][0] && $hour < $weekWork[date("N")-1][1]){
+  $today = date("N")-1;
+  if($today == 6){
+    $tomorrow = 0;
+  } else {
+    $tomorrow = $today + 1;
+  }
+
+  //Если обратились в рабочее время
+  if($hour >= $weekWork[$today][0] && $hour < $weekWork[$today][1]){
     $welcome = "Это лучший день, чтобы обратиться в Horns&Hooves! Мы работаем для Вас до " . $weekWork[date("N")-1][1];
   } else {
-    if($hour < $weekWork[date("N")-1][0]){
+    //Если обратились в рабочий день, но до открытия
+    if($hour < $weekWork[$today][0]){
       $comeIn = "Сегодня";
-      $from = $weekWork[date("N")-1][0];
-    } elseif($hour >= $weekWork[date("N")-1][1] && $weekWork[date("N")][0] !== -1 || $weekWork[date("N")-1][0] == -1){
+      $from = $weekWork[$today][0];
+    } elseif($hour >= $weekWork[$today][1] && $weekWork[$tomorrow][0] !== -1 || $weekWork[$today][0] == -1){
+      //Если в рабочий день, но после закрытия, при условии, что завтра не выходной (не обязательно, что это будет воскресенье) ИЛИ обратились в выходной
+      //(работает для случая,что выходной один... по идее можно сделать алгоритм для работы хоть с 6-ю выходными и 1 рабочим, универсальный)
       $comeIn = "Завтра";
-      if($weekWork[date("N")-1][0] == -1){
-        $from = $weekWork[0][0];
-      } else {
-        $from = $weekWork[date("N")][0];
-      }
+      $from = $weekWork[$tomorrow][0];
     } else {
+      //если не сегодня и не завтра, то...
       $comeIn = "Послезавтра";
       $from = $weekWork[0][0];
     }
@@ -62,7 +70,7 @@
     </h1>
     <h1>
     <?php
-    echo $today;
+    echo $todayIs;
     ?>
     </h1>
     <h1>

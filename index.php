@@ -6,7 +6,7 @@
 </head>
 <body>
 <ul>
-    <li>Блок 1. Базовый синтаксис. PHP в HTML и HTML средствами PHP
+<li>Блок 1. Базовый синтаксис. PHP в HTML и HTML средствами PHP
         <ul>
         <li>Занятие 1.1. Знакомство с PHP
                 <ul>
@@ -22,10 +22,21 @@
                     <li><a href="1.2-strings-and-forms/1.2.3-additional/form.html">Задание 1.2.3</a></li>
                 </ul>
             </li>
-            <li>Занятие 1.3. Формы и строки
+            <li>Занятие 1.3. Массивы и циклы
                 <ul>
                     <li><a href="1.3-arrays-and-functions/1-places/index.php">Задание 1.3.1</a></li>
                     <li><a href="1.3-arrays-and-functions/2-search/index.php">Задание 1.3.2</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </li>
+    <li>Блок 2. Работа с файлами
+        <ul>
+            <li>Занятие 2.1. Файлы
+                <ul>
+                    <li><a href="2.1-files/2.1.1/csvtojson.php">Задание 2.1.1</a></li>
+                    <li><a href="2.1-files/2.1.2/index.php">Задание 2.1.2</a></li>
                 </ul>
             </li>
         </ul>

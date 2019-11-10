@@ -2,20 +2,23 @@
   ini_set('display_errors', 1);
   error_reporting(E_ALL);
   $imgdir = "$_SERVER[DOCUMENT_ROOT]/2.1-files/2.1.2/img/";;
-  $filetype = $_FILES['userfile']['type'];
-
-  if($filetype == 'image/jpeg' || $filetype == 'image/png'){
-    //var_dump($_FILES);
+  if(count($_FILES) > 0){
+    $filetype = $_FILES['userfile']['type'];
+    if($filetype == 'image/jpeg' || $filetype == 'image/png'){
+        //var_dump($_FILES);
+        
+        $dest = str_replace('/', '\\', $imgdir . $_FILES['userfile']['name']);
+        $tmpName = $_FILES['userfile']['tmp_name'];
     
-    $dest = str_replace('/', '\\', $imgdir . $_FILES['userfile']['name']);
-    $tmpName = $_FILES['userfile']['tmp_name'];
-
-    //Копировать файл из временного места в постоянное
-    if (is_uploaded_file($tmpName)) {
-        move_uploaded_file($tmpName, $dest);
+        //Копировать файл из временного места в постоянное
+        if (is_uploaded_file($tmpName)) {
+            move_uploaded_file($tmpName, $dest);
+        }
+    
     }
-
   }
+
+
 ?>
 
 <!DOCTYPE html>

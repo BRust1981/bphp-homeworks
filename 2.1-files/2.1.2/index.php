@@ -1,7 +1,7 @@
 <?php
   ini_set('display_errors', 1);
   error_reporting(E_ALL);
-  $imgdir = "$_SERVER[DOCUMENT_ROOT]/2.1-files/2.1.2/img/";
+  $imgdir = "./img/";
   if(count($_FILES) > 0){
     $filetype = $_FILES['userfile']['type'];
     if($filetype == 'image/jpeg' || $filetype == 'image/png'){

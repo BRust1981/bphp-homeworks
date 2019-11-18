@@ -28,7 +28,6 @@
                     <li><a href="1.3-arrays-and-functions/2-search/index.php">Задание 1.3.2</a></li>
                 </ul>
             </li>
-
         </ul>
     </li>
     <li>Блок 2. Работа с файлами
@@ -44,4 +43,3 @@
 </ul>
 </body>
 </html>
-

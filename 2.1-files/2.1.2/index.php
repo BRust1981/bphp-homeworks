@@ -7,7 +7,8 @@
     if($filetype == 'image/jpeg' || $filetype == 'image/png'){
         //var_dump($_FILES);
         
-        $dest = str_replace('/', '\\', $imgdir . $_FILES['userfile']['name']);
+        //$dest = str_replace('/', '\\', $imgdir . $_FILES['userfile']['name']);
+        $dest = $imgdir . $_FILES['userfile']['name'];
         $tmpName = $_FILES['userfile']['tmp_name'];
     
         //Копировать файл из временного места в постоянное

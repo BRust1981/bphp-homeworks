@@ -10,8 +10,9 @@
     $result[$i - 1] = $json;
   }
 
-  echo json_encode($result);
+  $print = json_encode($result, JSON_PRETTY_PRINT);
+  echo $print;
   $jsonfile = fopen('data.json', 'a');
-  fwrite($jsonfile, json_decode($result));
+  fwrite($jsonfile, json_encode($result, JSON_PRETTY_PRINT));
   fclose($jsonfile);
 ?>

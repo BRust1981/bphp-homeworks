@@ -12,7 +12,7 @@ class DataRecordModel
     }
 
     public function commit()
-    {
+    {   
         $data = new JsonDataArray($this->filename);
         if (is_null($this->guid)){
             $this->guid = $data->add($this);

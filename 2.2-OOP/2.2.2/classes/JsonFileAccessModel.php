@@ -6,8 +6,11 @@ class JsonFileAccessModel
     protected $file;
 
     function __construct($file)
-    {
-        $this->fileName = Config::DATABASE_PATH . $file . '.json';
+    {   if(is_readable(Config::DATABASE_PATH . $file . '.json')){
+            $this->fileName = Config::DATABASE_PATH . $file . '.json';
+        } else {
+            $this->fileName = './.' . Config::DATABASE_PATH . $file . '.json';
+        }
     }
 
     private function connect()
@@ -39,8 +42,8 @@ class JsonFileAccessModel
     }
 
     public function readJson()
-    {
-        return json_encode($this->read(), JSON_PRETTY_PRINT);
+    {   //var_dump(json_decode($this->read()));
+        return json_decode($this->read());
     }
 
     public function writeJson($text)

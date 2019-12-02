@@ -21,14 +21,13 @@ class JsonDataArray
     const PARAM_TYPE_UNSORTED = 3;
 
     public function __construct($dataModelName = null)
-    {
-        $dataModelName =  $dataModelName ?? strtolower(static::class);
+    {   $dataModelName =  $dataModelName ?? strtolower(static::class);
         $this->file = new JsonFileAccessModel($dataModelName);
         $this->load();
     }
 
     public function load()
-    {
+    {   
         $this->dataTitle = $this->file->readJson()->dataTitle;
         $this->dataArray = (array)$this->file->readJson()->dataArray;
         $this->newQuery();

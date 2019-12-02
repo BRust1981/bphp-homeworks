@@ -6,8 +6,11 @@
     public $password;
     public $rate;
 
-    public function addUserFromForm(){
-
+    public function addUserFromForm($name, $email, $password, $rate){
+      $this->name = $name;
+      $this->email = $email;
+      $this->password = $password;
+      $this->rate = $rate;
     }
-
+  }
 ?>

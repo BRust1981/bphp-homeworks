@@ -1,4 +1,36 @@
 <?php
+    //ini_set('display_errors', 1);
+    //error_reporting(E_ALL);
+    
+    var_dump($_SESSION);echo '<br>';
+
+    //Создаем сессию, если ее нет, проверять ее окончание не станем - умрет через положенные 5 минут
+    if(!isset($_SESSION)){
+        createSession();
+//        incrementViews(getViews());
+//        var_dump($_SESSION);
+    } else {
+        echo $_SESSION['viewtime'];echo '<br>';
+    }
+
+    var_dump($_SESSION);echo '<br>';
+
+    // if(shouldBeIncremented()){
+
+    // }
+    /**
+     * Функция получает текущее количество просмотров на видео
+     *
+     * @return int
+     */
+    function createSession()
+    {
+        session_set_cookie_params(300);
+        session_start();
+        $_SESSION['viewtime'] = date_create('now', new DateTimeZone('Europe/Moscow'));
+        echo "session created " . $_SESSION['viewtime']->format('H:i:s d.m.Y');echo '<br>';
+    }
+
     /**
      * Функция получает текущее количество просмотров на видео
      *
@@ -29,6 +61,7 @@
      */
     function shouldBeIncremented(): bool
     {
+        echo getViews();
         //write your code here
     }
 

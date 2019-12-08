@@ -44,6 +44,12 @@
                     <li><a href="2.2-OOP/2.2.2/index.php">Задание 2.2.2</a></li>
                 </ul>
             </li>
+            <li>Занятие 2.3. Даты. Сессии
+                <ul>
+                    <li><a href="2.3-dates-and-sessions/2.3.1-your-tube/index.php">Задание 2.3.1</a></li>
+                    <li><a href="2.3-dates-and-sessions/2.3.2-brute-protection/index.php">Задание 2.3.2</a></li>
+                </ul>
+            </li>
         </ul>
     </li>
 </ul>

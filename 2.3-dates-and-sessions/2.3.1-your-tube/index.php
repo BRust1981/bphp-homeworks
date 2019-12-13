@@ -1,35 +1,34 @@
 <?php
-    //ini_set('display_errors', 1);
-    //error_reporting(E_ALL);
-    
-    var_dump($_SESSION);echo '<br>';
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
 
-    //Создаем сессию, если ее нет, проверять ее окончание не станем - умрет через положенные 5 минут
-    if(!isset($_SESSION)){
-        createSession();
-//        incrementViews(getViews());
-//        var_dump($_SESSION);
-    } else {
-        echo $_SESSION['viewtime'];echo '<br>';
+    function createSession($term = null)
+    {
+        session_set_cookie_params($term);
+        session_start();
+
+        if(shouldBeIncremented()){
+            incrementViews(getViews());
+            if(!empty($_SESSION['viewtimeend'])){
+                session_destroy();
+                session_start();
+            }
+        } 
+        updateSessionTime($term);
+
     }
 
-    var_dump($_SESSION);echo '<br>';
+    function updateSessionTime($term){
+        $_SESSION['viewtimeend'] = date_create("+ $term second", new DateTimeZone('Europe/Moscow'));
+    }
 
-    // if(shouldBeIncremented()){
+    createSession(30);
 
-    // }
     /**
      * Функция получает текущее количество просмотров на видео
      *
      * @return int
      */
-    function createSession()
-    {
-        session_set_cookie_params(300);
-        session_start();
-        $_SESSION['viewtime'] = date_create('now', new DateTimeZone('Europe/Moscow'));
-        echo "session created " . $_SESSION['viewtime']->format('H:i:s d.m.Y');echo '<br>';
-    }
 
     /**
      * Функция получает текущее количество просмотров на видео
@@ -61,8 +60,18 @@
      */
     function shouldBeIncremented(): bool
     {
-        echo getViews();
-        //write your code here
+        if(empty($_SESSION['viewtimeend'])){
+            return true;
+        } else {
+            $now = date_create('now', new DateTimeZone('Europe/Moscow'));
+            // echo $now->format('H:i:s d.m.Y') . '<br>';
+            // echo $_SESSION['viewtimeend']->format('H:i:s d.m.Y') . '<br>';
+            if($now > $_SESSION['viewtimeend']) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
     //

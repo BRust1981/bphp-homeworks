@@ -19,19 +19,16 @@
   <input type="password" name="password" placeholder="Пароль" required>
   <button type="submit">Отправить</button>
   <?php
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
     if(isset($_COOKIE['bruteforcedetected'])){
       echo '<script>
         alert("Слишком часто вводите пароль. Попробуйте еще раз через минуту.");
     </script>';
-    } elseif(isset($_COOKIE['loginsuccess'])) {
+    } elseif(isset($_COOKIE['logintime'])) {
       echo '<script>
-        alert("Успешная авторизация.");
+        alert("Вы авторизованы.");
     </script>';
     }
   ?>
 </form>
-<!--<script src="form.js"></script>-->
 </body>
 </html>

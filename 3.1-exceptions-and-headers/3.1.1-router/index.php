@@ -2,21 +2,6 @@
   ini_set('display_errors', 1);
   error_reporting(E_ALL);
 
-  function checkParam($arr){
-    if(!empty($_GET) && !empty($_GET['page'])){
-
-      $pagename = $_GET['page'];
-  
-      if($arr->isAvailablePage($pagename)){
-        throw new Exception('(Not Found) Страница не найдена!', 404);
-      } else{
-        return $pagename;
-      }
-    } else {
-      throw new Exception('(Bad Request) Плохой запрос, очень...', 400);
-    }
-  }
-
   /**
  * Доступные страницы на сайте
  *
@@ -30,7 +15,7 @@
 
   
 try {
-  echo "Вы находитесь на странице <b>" . checkParam($check) . "</b>";
+  echo "Вы находитесь на странице <b>" . $check->isAvailablePage() . "</b>";
 }catch(Exception $e){
   $errcode = $e->getCode();
   header("HTTP/1.1 $errcode");
